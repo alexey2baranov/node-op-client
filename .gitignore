@@ -1,0 +1,10 @@
+.idea/
+.vscode/
+node_modules/
+tmp/
+temp/
+/temp.*
+/logs/*.log
+/logs/*.log.*
+dist/
+.env

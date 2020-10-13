@@ -1,0 +1,65 @@
+{
+  "_from": "op-client",
+  "_id": "op-client@1.0.13",
+  "_inBundle": false,
+  "_integrity": "sha512-RLDJY5Q5T5z6E3eiFtBFzcB8IRNRNwr8ZFQtR3yn3SZLr1w3p0D/LSsMxyT9byPbN5u9UqSbweWW/VejRBjAqQ==",
+  "_location": "/op-client",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "op-client",
+    "name": "op-client",
+    "escapedName": "op-client",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/op-client/-/op-client-1.0.12.tgz",
+  "_shasum": "e1e5ccd36f4e8b98dd4c0bf9c74e16b839dcd05b",
+  "_spec": "op-client",
+  "_where": "C:\\Users\\baranov_aly\\WebstormProjects\\dashboard",
+  "author": {
+    "name": "alexey2baranov@gmail.com"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "client-oauth2": "^4.3.3",
+    "cross-fetch": "^3.0.5",
+    "iso8601-duration": "^1.2.0",
+    "keypather": "^3.1.0",
+    "reflect-metadata": "^0.1.10"
+  },
+  "deprecated": false,
+  "description": "client library for OpenProject.org server. Supports Node.js and browsers.",
+  "devDependencies": {
+    "@types/jest": "^26.0.9",
+    "@types/node": "^8.0.29",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "dotenv": "^8.2.0",
+    "jest": "^26.4.0",
+    "ts-jest": "^26.2.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.7"
+  },
+  "keywords": [
+    "openproject",
+    "client",
+    "server"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "op-client",
+  "scripts": {
+    "build": "tsc",
+    "master": "git checkout master && git merge development && git push && git checkout development",
+    "test": "jest  --runInBand",
+    "test:server:down": "docker stop node-op-client-test && docker rm node-op-client-test",
+    "test:server:up": "docker run -it -p 8091:80 --name node-op-client-test -v /var/openproject/pgdata -v /var/openproject/assets openproject/community:10"
+  },
+  "version": "1.0.12"
+}
