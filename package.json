@@ -1,6 +1,7 @@
 {
+  "version": "1.0.13",
   "_from": "op-client",
-  "_id": "op-client@1.0.13",
+  "_id": "op-client@1.0.12",
   "_inBundle": false,
   "_integrity": "sha512-RLDJY5Q5T5z6E3eiFtBFzcB8IRNRNwr8ZFQtR3yn3SZLr1w3p0D/LSsMxyT9byPbN5u9UqSbweWW/VejRBjAqQ==",
   "_location": "/op-client",
@@ -60,6 +61,5 @@
     "test": "jest  --runInBand",
     "test:server:down": "docker stop node-op-client-test && docker rm node-op-client-test",
     "test:server:up": "docker run -it -p 8091:80 --name node-op-client-test -v /var/openproject/pgdata -v /var/openproject/assets openproject/community:10"
-  },
-  "version": "1.0.12"
+  }
 }
