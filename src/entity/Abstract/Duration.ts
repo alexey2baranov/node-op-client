@@ -42,4 +42,8 @@ export default class Duration implements IDuration {
   isEmpty():boolean{
     return toSeconds(this)===0
   }
+
+  toSeconds():number{
+    return toSeconds(this)
+  }
 }
