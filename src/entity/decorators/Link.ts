@@ -6,7 +6,13 @@ export default function Link(name: string, type: new (...args: any[]) => Abstrac
   return function (target: Abstract, propertyKey: string | symbol): void {
     function getter():Abstract {
       if (this.body._links.hasOwnProperty(name)) {
-        return new type(this.body._links[name])
+        const self=  this.body._links[name]
+        if (self.href) {
+          return new type(self);
+        }
+        else{
+          return null;
+        }
       }
     }
 

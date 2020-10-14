@@ -18,14 +18,14 @@ export default class Abstract {
     if (init) {
       if (typeof init === 'number') {
         this.id = init;
-      } else if ((init as IEndpoint).href) {
+      } else if (typeof init === 'object' && init.hasOwnProperty('href')) {
         this.self = init as IEndpoint;
       } else {
         this.merge(init);
         if (this.id && !this.self) {
           this.id = this.id
         }
-        if (this.self && !this.id){
+        if (this.self && !this.id) {
           this.self = this.self
         }
       }
