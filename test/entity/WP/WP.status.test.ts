@@ -3,7 +3,7 @@ import Status from "../../../src/entity/Status/Status";
 import IWPBody from "../../../src/entity/WP/IWPBody";
 import body from "../../EntityManager/fotch.body";
 
-describe('WP constructor', () => {
+describe('WP#status', () => {
   it('set', async () => {
     const wp = new WP();
     wp.status= new Status(1);

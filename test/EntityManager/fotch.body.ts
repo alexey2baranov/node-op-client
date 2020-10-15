@@ -364,7 +364,8 @@ const body= {
         "href": null
       },
       "assignee": {
-        "href": null
+        "href": "/api/v3/users/2",
+        "title": "OpenProject"
       },
       "version": {
         "href": null

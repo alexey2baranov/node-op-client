@@ -6,8 +6,9 @@ import Project from "./entity/Project/Project";
 import Status from "./entity/Status/Status";
 import Type from "././entity/Type/Type";
 import TypeEnum from "././entity/Type/TypeEnum";
-import WP from "./entity/WP/WP";
 import User from "./entity/User/User";
+import WP from "./entity/WP/WP";
+
 import Field from "./entity/decorators/Field";
 import Link from "./entity/decorators/Link";
 import StatusEnum from "./entity/Status/StatusEnum";
