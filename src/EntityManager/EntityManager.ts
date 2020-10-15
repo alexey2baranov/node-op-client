@@ -10,17 +10,26 @@ interface IFotchInit extends Omit<RequestInit, 'body'> {
 }
 
 interface IApiOptions {
-  path: string,
+  // path: string,
 }
 
 export default class EntityManager {
   private OAuth
+  private baseUrl: string
   private apiOptions: IApiOptions
   token: Token
   createLogger: () => any
 
-  constructor(options: { oauthOptions?, apiOptions: IApiOptions, token?: Token, createLogger: () => any }) {
-    this.OAuth = new ClientOAuth2(options.oauthOptions);
+  constructor(options: {baseUrl: string, oauthOptions?, apiOptions?: IApiOptions, token?: Token, createLogger: () => any }) {
+    this.baseUrl= options.baseUrl
+    const fullOauthOptions={
+      ...options.oauthOptions,
+      accessTokenUri: `${options.baseUrl}/oauth/token`,
+    }
+    if (!fullOauthOptions.clientSecret){
+      fullOauthOptions.authorizationUri= `${options.baseUrl}/oauth/authorize`
+    }
+    this.OAuth = new ClientOAuth2(fullOauthOptions);
     this.apiOptions = options.apiOptions
     this.token = options.token
     this.createLogger = options.createLogger
@@ -65,7 +74,7 @@ export default class EntityManager {
     }
 
     // собираем url
-    url = this.apiOptions.path + (url.startsWith('/') ? '' : '/') + url
+    url = this.baseUrl + (url.startsWith('/') ? '' : '/') + url
 
     // подписываем опции запроса заголовком Authorization
     const signedOptions = this.token.sign({
@@ -88,9 +97,9 @@ export default class EntityManager {
         throw new Error(resultAsText)
       }
       if (result._type === `Error`) {
-        let message= `${response.status} [${result.errorIdentifier}] ${result.message}`
-        if (result?._embedded?.errors?.length){
-          message+= ' '+Object.values(result._embedded.errors).map((eachError: any)=>eachError._embedded.details.attribute+': '+eachError.message).join(' ')
+        let message = `${response.status} [${result.errorIdentifier}] ${result.message}`
+        if (result?._embedded?.errors?.length) {
+          message += ' ' + Object.values(result._embedded.errors).map((eachError: any) => eachError._embedded.details.attribute + ': ' + eachError.message).join(' ')
         }
         const error = new Error(message)
         throw error
@@ -110,12 +119,12 @@ export default class EntityManager {
     return entity;
   }
 
-  async getMany<T extends Abstract>(T, options: { all?: boolean, notify?: boolean, offset?: number, pageSize?: number, filters?: Object[], sortBy?: string, groupBy?: string, showSums?: boolean }): Promise<Array<T>> {
+  async getMany<T extends Abstract>(T, options: { all?: boolean, notify?: boolean, offset?: number, pageSize?: number, filters?: Object[], sortBy?: string, groupBy?: string, showSums?: boolean } = {}): Promise<Array<T>> {
 
     const result = [];
     let total;
-    for (let offset = 1; offset === 1 || options.all && (result.length < total); offset++) {
-      const query = Object.entries({offset, ...options})
+    for (let startOffset = options.offset || 1, offset = startOffset; offset === startOffset || options.all && (result.length < total); offset++) {
+      const query = Object.entries({...options, offset,})
         .map(([key, value]) => {
           if (key === 'filters') {
             value = JSON.stringify(value)

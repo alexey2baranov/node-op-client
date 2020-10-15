@@ -4,9 +4,10 @@ import Type from "../../src/entity/Type/Type";
 import Project from "../../src/entity/Project/Project";
 import createWP from "./createWP";
 import CO from "../../src/entity/CO/CO";
+import User from "../../src/entity/User/User";
 
 // https://urz.open.ru:8091/projects/dash/work_packages/96
-describe('opi lib WP getMany', () => {
+describe('EntityManager#getMany', () => {
   describe('filters', () => {
 
     it('filter wp by status (from OP doc site)', async () => {
@@ -48,10 +49,10 @@ describe('opi lib WP getMany', () => {
       expect(res).toBeInstanceOf(Array);
       expect(res.length).toBeGreaterThan(5);
       expect(res[0]).toBeInstanceOf(Type);
-      console.table(
+      console.log(
         res
-          .map(item => ({id: item.body.id, title: item.body._links.self.title,}))
           .sort((a, b) => a.id < b.id ? -1 : 1)
+          .reduce((accumulator, type)=>{accumulator[type.self.title]= type.id; return accumulator}, {})
       )
     })
 
@@ -76,6 +77,11 @@ describe('opi lib WP getMany', () => {
           .map(item => ({id: item.body.id, title: item.body._links.self.title,}))
           .sort((a, b) => a.id < b.id ? -1 : 1)
       )
+    })
+
+    it('User', async () => {
+      const users = await em.getMany<User>(User)
+      expect(users[0]).toBeInstanceOf(User);
     })
   })
 })

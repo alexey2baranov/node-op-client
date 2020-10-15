@@ -9,6 +9,7 @@ import IAbstractBody from "../Abstract/IAbstractBody";
 import CO from "../CO/CO";
 import Duration from "../Abstract/Duration";
 import Field from "../decorators/Field";
+import {User} from "../../index";
 
 /**
  * Work package
@@ -21,6 +22,18 @@ export default class WP extends Abstract {
   constructor(init?: number | IEndpoint | IWPBody) {
     super(init)
   }
+
+  @Field('subject', String)
+  subject: string
+
+  @Field('startDate', Date)
+  startDate: Date
+
+  @Field('dueDate', Date)
+  dueDate: Date
+
+  @Field('createdAt', Date)
+  createdAt: Date
 
   @Field('estimatedTime', Duration)
   estimatedTime: Duration
@@ -36,6 +49,13 @@ export default class WP extends Abstract {
 
   @Link('customField1', CO)
   module: CO
+
+
+  @Link('assignee', User)
+  assignee: User
+
+  @Link('author', User)
+  author: User
 
   body: IWPBody
 

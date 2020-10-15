@@ -32,7 +32,7 @@ export default class Abstract {
     }
   }
 
-  get id() {
+  get id(): number {
     return this.body.id
   }
 
