@@ -20,14 +20,14 @@ export default class EntityManager {
   token: Token
   createLogger: () => any
 
-  constructor(options: {baseUrl: string, oauthOptions?, apiOptions?: IApiOptions, token?: Token, createLogger: () => any }) {
-    this.baseUrl= options.baseUrl
-    const fullOauthOptions={
+  constructor(options: { baseUrl: string, oauthOptions?, apiOptions?: IApiOptions, token?: Token, createLogger: () => any }) {
+    this.baseUrl = options.baseUrl
+    const fullOauthOptions = {
       ...options.oauthOptions,
       accessTokenUri: `${options.baseUrl}/oauth/token`,
     }
-    if (!fullOauthOptions.clientSecret){
-      fullOauthOptions.authorizationUri= `${options.baseUrl}/oauth/authorize`
+    if (!fullOauthOptions.clientSecret) {
+      fullOauthOptions.authorizationUri = `${options.baseUrl}/oauth/authorize`
     }
     this.OAuth = new ClientOAuth2(fullOauthOptions);
     this.apiOptions = options.apiOptions
@@ -148,14 +148,13 @@ export default class EntityManager {
       patch.lockVersion = actualCopy.body.lockVersion
     }
 
-    const patchedBody = await this.fetch(`${entity.self.href}${notify ? '?notify' : ''}`, {
+    const patchedBody = await this.fetch(`${entity.self.href}${notify !== undefined ? `?notify=${JSON.stringify(notify)}` : ''}`, {
       method: "PATCH",
       body: patch,
     })
     entity.body.lockVersion = patchedBody.lockVersion
     entity.body.updatedAt = patchedBody.updatedAt
     return entity;
-
   }
 
   async create<T extends WP>(entity: T): Promise<T> {
