@@ -1,5 +1,5 @@
 {
-  "version": "1.0.21",
+  "version": "1.0.22",
   "_from": "op-client",
   "author": {
     "name": "alexey2baranov@gmail.com"
@@ -19,7 +19,7 @@
     "dotenv": "^8.2.0",
     "jest": "^26.4.0",
     "ts-jest": "^26.2.0",
-    "tsconfig-paths": "^3.9.0",
+    "ts-node": "^9.0.0",
     "typescript": "^3.9.7"
   },
   "keywords": [
@@ -33,8 +33,10 @@
   "scripts": {
     "build": "tsc",
     "master": "git checkout master && git merge development && git push && git checkout development",
-    "test": "jest  --runInBand",
-    "test:server:down": "docker stop node-op-client-test && docker rm node-op-client-test",
-    "test:server:up": "docker run -it -p 8091:80 --name node-op-client-test -v /var/openproject/pgdata -v /var/openproject/assets openproject/community:10"
+    "test": "npm run test:unit",
+    "test:unit": "jest  --runInBand --testMatch=\"<rootDir>/test/entity/**/*.test.ts\"",
+    "server:up": "docker-compose up -d",
+    "server:down": "docker-compose down",
+    "test:integration": "jest  --runInBand --testMatch=\"<rootDir>/test/entity/**/*.test.ts\""
   }
 }

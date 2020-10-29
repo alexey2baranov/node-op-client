@@ -1,16 +1,11 @@
-#op-client
-
-Client library for OpenProject server. Works both on Node.js and browser. Tested with v10 and 11.
-
-## Installation
-```bash
-npm add op-client
-```
-
-## Quick start
-```ts
 import {CO, Duration, EntityManager, Project, Status, StatusEnum, Type, WP, TypeEnum, User} from "../src";
 import {config} from "dotenv";
+
+console.warn(`
+ * WARNING !!!
+ * Check out you had started OpenProject server, configured OAUth2.0 client and filled .env file before start example.
+ * If you haven't your own open project run "npm run server:up" to start demo server.
+ `);
 
 // reading ENVIRONMENT from .env file
 config();
@@ -84,41 +79,3 @@ config();
   const user = await em.get<User>(User, 1);
   console.log(user.self.title) // ->System
 })()
-```
-
-## Setting up OAuth connection
-
-* Login as admin
-* Select Administration / Authentication / OAuth applications
-* Follow https://docs.openproject.org/system-admin-guide/authentication/oauth-applications/
-
-
-## Development
-
-```bash
-# clone repo
-git clone https://github.com/alexey2baranov/node-op-client
-cd node-op-client
-
-# run unit tests
-npm test
-
-
-# to run integrated test run OpenProject, setup OAuth2.0 connection and fill <PROJECT_ROOT>/.env file
-npm run server:up
-touch .env
-npm run test:integration
-npm run server:down
-```
-
-## <PROJECT_ROOT>/.env file
-
-```env
-BASE_URL=http://localhost:8093
-
-CLIENT_ID=...
-CLIENT_SECRET=...
-```
-
-## ToDo
-* Add more documentation

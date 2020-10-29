@@ -14,13 +14,11 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "allowJs": true,
-
-    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }],
-
     "baseUrl": "src"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "example/**/*"
   ],
   "exclude": [
     "node_modules"
