@@ -38,6 +38,9 @@ export default class WP extends Abstract {
   @Field('estimatedTime', Duration)
   estimatedTime: Duration
 
+  @Field('derivedEstimatedTime', Duration)
+  derivedEstimatedTime: Duration
+
   @Link('project', Project)
   project: Project
 
