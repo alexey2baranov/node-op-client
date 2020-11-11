@@ -32,6 +32,9 @@ export default class WP extends Abstract {
   @Field('dueDate', Date)
   dueDate: Date
 
+  @Field('scheduleManually', Boolean)
+  scheduleManually: boolean
+
   @Field('createdAt', Date)
   createdAt: Date
 
