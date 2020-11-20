@@ -6,23 +6,17 @@ export default function Embedded(name: string, type: new (...args: any[]) => Abs
   return function (target: Abstract, propertyKey: string | symbol): void {
     function getter():Abstract {
       if (this.body._embedded.hasOwnProperty(name)) {
-        const self=  this.body._embedded[name]
-        if (self.href) {
-          return new type(self);
-        }
-        else{
-          return null;
-        }
+        return new type(this.body._embedded[name])
       }
     }
 
     function setter(value:Abstract) {
-        this.body._embedded[name] = value.self
+        this.body._embedded[name] = value.body
     }
 
     Object.defineProperty(target, propertyKey, {
       get: getter,
-      set: setter,
+      // set: setter,
       enumerable: true,
       configurable: true,
     })
