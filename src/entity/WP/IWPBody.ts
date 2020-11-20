@@ -13,7 +13,7 @@ export default interface IWPBody extends IAbstractBody{
   },
   "startDate"?: string,
   "dueDate"?: string,
-  "scheduleManually?": boolean,
+  "scheduleManually"?: boolean,
   "estimatedTime"?: string,
   "derivedEstimatedTime"?: string,
   "percentageDone"?: number,

@@ -7,4 +7,6 @@ export default interface IAbstractBody {
   "_links"?: {
     "self"?: IEndpoint,
   }
+  "_embedded"?: {
+  }
 }

@@ -10,6 +10,7 @@ import CO from "../CO/CO";
 import Duration from "../Abstract/Duration";
 import Field from "../decorators/Field";
 import {User} from "../../index";
+import Embedded from "../decorators/Embedded";
 
 /**
  * Work package
@@ -46,12 +47,18 @@ export default class WP extends Abstract {
 
   @Link('project', Project)
   project: Project
+  @Embedded('project', Project)
+  embeddedProject: Project
 
   @Link('status', Status)
   status: Status
+  @Embedded('status', Status)
+  embeddedStatus: Status
 
   @Link('type', Type)
   type: Type
+  @Embedded('type', Type)
+  embeddedType: Type
 
   @Link('customField1', CO)
   module: CO

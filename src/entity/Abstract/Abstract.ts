@@ -13,7 +13,8 @@ export default class Abstract {
 
   constructor(init?: number | IEndpoint | IAbstractBody) {
     this.body = {
-      _links: {}
+      _links: {},
+      _embedded:{},
     }
     if (init) {
       if (typeof init === 'number') {
