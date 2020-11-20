@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  keycloak:
+  openproject:
     image: openproject/community:11
     restart: always
     ports:
