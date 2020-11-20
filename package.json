@@ -1,12 +1,12 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.1",
   "_from": "op-client",
   "author": {
     "name": "alexey2baranov@gmail.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/alexey2baranov/node-op-client"
+    "type": "git",
+    "url": "https://github.com/alexey2baranov/node-op-client"
   },
   "dependencies": {
     "client-oauth2": "^4.3.3",

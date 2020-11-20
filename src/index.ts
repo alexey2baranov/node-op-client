@@ -11,6 +11,7 @@ import WP from "./entity/WP/WP";
 
 import Field from "./entity/decorators/Field";
 import Link from "./entity/decorators/Link";
+import Embedded from "./entity/decorators/Embedded";
 import StatusEnum from "./entity/Status/StatusEnum";
 
 export {
@@ -25,6 +26,7 @@ export {
   WP,
   Link,
   Field,
+  Embedded,
   Duration,
   User,
 };
