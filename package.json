@@ -1,5 +1,5 @@
 {
-  "version": "1.2.1",
+  "version": "1.2.2",
   "_from": "op-client",
   "author": {
     "name": "alexey2baranov@gmail.com"
@@ -32,7 +32,7 @@
     "server"
   ],
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "name": "op-client",
   "scripts": {
     "build": "tsc",
