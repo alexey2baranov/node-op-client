@@ -41,6 +41,8 @@ export default class WP extends Abstract {
 
   @Field('estimatedTime', Duration)
   estimatedTime: Duration
+  @Field('spentTime', Duration)
+  spentTime: Duration
 
   @Field('derivedEstimatedTime', Duration)
   derivedEstimatedTime: Duration
