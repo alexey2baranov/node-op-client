@@ -10,4 +10,10 @@ describe('str2date', () => {
     const result = str2date('2020-01-01');
     expect(result.getHours()).toBe(0);
   })
+
+  it('parts Z', async () => {
+    const date = new Date()
+    const result = str2date(date.toISOString());
+    expect(result.getHours()).toBe(date.getHours());
+  })
 })
