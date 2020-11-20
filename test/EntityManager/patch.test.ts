@@ -4,6 +4,7 @@ import IWPBody from "../../src/entity/WP/IWPBody";
 import task from "../entity/tesk.created.body";
 import Project from "../../src/entity/Project/Project";
 import createWP from "./createWP";
+import {Status, StatusEnum} from "../../src";
 
 // https://urz.open.ru:8091/projects/dash/work_packages/96
 describe('opi lib WP patch', () => {
@@ -39,7 +40,10 @@ describe('opi lib WP patch', () => {
   it('scope', async () => {
     const wp = await createWP()
     wp.body.estimatedTime = 'wrong time hire be be be'
+    wp.status = new Status(StatusEnum.Closed)
 
-    await em.patch(wp, false, ['subject'])
+    await em.patch(wp, false, ['subject','_links.status'])
+
+    expect(wp.embeddedStatus.id).toBe(StatusEnum.Closed)
   })
 })

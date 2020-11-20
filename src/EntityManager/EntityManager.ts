@@ -152,8 +152,17 @@ export default class EntityManager {
       method: "PATCH",
       body: patch,
     })
-    entity.body.lockVersion = patchedBody.lockVersion
-    entity.body.updatedAt = patchedBody.updatedAt
+    if (!fieldPaths || fieldPaths.length == 0) {
+      entity.body = patchedBody
+    } else {
+      entity.body.lockVersion = patchedBody.lockVersion
+      entity.body.updatedAt = patchedBody.updatedAt;
+        // updating embedded
+        (fieldPaths as string[]|| [])
+        .filter(fieldPath => fieldPath.startsWith('_links.'))
+        .map(fieldPaths=>fieldPaths.substr(7,))
+        .forEach(fieldName=>entity.body._embedded[fieldName]= patchedBody._embedded[fieldName])
+    }
     return entity;
   }
 
