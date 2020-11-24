@@ -5,7 +5,6 @@ import Status from "../Status/Status";
 import Type from "../Type/Type";
 import Link from "../decorators/Link";
 import Project from "../Project/Project";
-import IAbstractBody from "../Abstract/IAbstractBody";
 import CO from "../CO/CO";
 import Duration from "../Abstract/Duration";
 import Field from "../decorators/Field";
@@ -20,7 +19,7 @@ export default class WP extends Abstract {
 
   static url = '/api/v3/work_packages'
 
-  constructor(init?: number | IEndpoint | IWPBody) {
+  constructor(init?: number | IEndpoint | Partial<IWPBody>) {
     super(init)
   }
 

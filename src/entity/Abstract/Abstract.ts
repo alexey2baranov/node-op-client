@@ -15,7 +15,7 @@ export default class Abstract {
    */
   _links: { [key: string]: Abstract }
 
-  constructor(init?: number | IEndpoint | IAbstractBody) {
+  constructor(init?: number | IEndpoint | Partial<IAbstractBody>) {
     this.body = {
       id: undefined,
       _links: {
