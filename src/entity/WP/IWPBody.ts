@@ -146,7 +146,7 @@ export default interface IWPBody extends IAbstractBody{
     },
     // "customActions": []
   },
-  "_links"?: IAbstractBody['_links'] & {
+  "_links": IAbstractBody['_links'] & {
     "children"?:IEndpoint[]
     "attachments"?: IEndpoint,
     "addAttachment"?: IEndpoint,

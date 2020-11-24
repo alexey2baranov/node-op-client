@@ -18,7 +18,9 @@ export default class Abstract {
   constructor(init?: number | IEndpoint | IAbstractBody) {
     this.body = {
       id: undefined,
-      _links: {},
+      _links: {
+        self: undefined,
+      },
       _embedded: {},
     }
     this._links = {}

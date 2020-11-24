@@ -5,7 +5,7 @@ import {IEndpoint} from "../entity/Abstract/IEndpoint";
 import ClientOAuth2, {Token} from "client-oauth2";
 import WP from "../entity/WP/WP";
 
-interface IFotchInit extends Omit<RequestInit, 'body'> {
+interface IFetchInit extends Omit<RequestInit, 'body'> {
   body?: BodyInit | object,
 }
 
@@ -35,7 +35,7 @@ export default class EntityManager {
     this.createLogger = options.createLogger
   }
 
-  async fetch(url: string, options?: IFotchInit) {
+  async fetch(url: string, options?: IFetchInit) {
     const requestInit = {
         ...options,
       },
@@ -89,7 +89,7 @@ export default class EntityManager {
     const response = await fetch(url, signedOptions);
     let resultAsText = await response.text()
     let result
-    // распарсиваем ответ
+    // парсим ответ
     if (response.headers.get('content-type') === 'application/hal+json; charset=utf-8') {
       try {
         result = JSON.parse(resultAsText)
@@ -110,7 +110,7 @@ export default class EntityManager {
 
   async get<T extends Abstract>(T, id: number | IEndpoint, notify?: boolean): Promise<T> {
     const result = new T(id);
-    return this.reload(result)
+    return this.reload(result, notify)
   }
 
   async reload<T extends Abstract>(entity: T, notify?: boolean): Promise<T> {
@@ -189,6 +189,4 @@ export default class EntityManager {
     console.log(result)
     return result;
   }
-
-
 }
