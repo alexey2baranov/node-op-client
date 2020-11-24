@@ -9,6 +9,6 @@ export default interface IStatusBody extends IAbstractBody {
   isDefault: boolean,
   isClosed: boolean,
   isReadonly: boolean,
-  color: boolean,
+  color: string,
   defaultDoneRatio: number,
 }
