@@ -4,7 +4,6 @@ import IAbstractBody from "../Abstract/IAbstractBody";
 
 export default interface IUserBody extends IAbstractBody{
   "_type"?: "Type",
-  "id"?: number,
   "name": string,
   "createdAt": string,
   "updatedAt": string,

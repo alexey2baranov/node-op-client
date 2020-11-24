@@ -114,8 +114,9 @@ export default class EntityManager {
   }
 
   async reload<T extends Abstract>(entity: T, notify?: boolean): Promise<T> {
-    const body = await this.fetch(`${entity.self.href}${notify ? '?notify' : ''}`);
-    entity.merge(body);
+    const body = await this.fetch(`${entity.self.href}${notify ? '?notify' : ''}`)
+    entity.merge(body)
+    entity._links={}
     return entity;
   }
 

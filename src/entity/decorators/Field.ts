@@ -22,7 +22,7 @@ export default function Field(name: string, type?: any) {
       if (type === Date) {
         this.body[name] = date2str(value)
       } else if (type === Duration) {
-        this.body[name] = (value as Duration).toString()
+        this.body[name] = value?(value as Duration).toString():null
       } else {
         this.body[name] = value
       }

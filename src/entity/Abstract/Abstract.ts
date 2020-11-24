@@ -10,10 +10,14 @@ export default class Abstract {
   static url = '/should_be_defined'
 
   body: IAbstractBody
-  private _links: { [key: string]: Abstract }
+  /**
+   * Holds linked objects matched the body._links.
+   */
+  _links: { [key: string]: Abstract }
 
   constructor(init?: number | IEndpoint | IAbstractBody) {
     this.body = {
+      id: undefined,
       _links: {},
       _embedded: {},
     }
@@ -61,8 +65,8 @@ export default class Abstract {
   }
 
 
-  bodyScope(fieldPaths: Array<string | number | Symbol>): IAbstractBody {
-    const result: IAbstractBody = {}
+  bodyScope(fieldPaths: Array<string | number | Symbol>): Partial<IAbstractBody> {
+    const result: Partial<IAbstractBody> = {}
     fieldPaths.forEach(eachFieldPath => {
       const eachFieldValue = get(this.body, eachFieldPath)
       set(result, eachFieldPath, eachFieldValue)
