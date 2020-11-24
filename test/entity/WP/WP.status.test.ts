@@ -10,7 +10,7 @@ describe('WP#status', () => {
     expect(wp.body._links.status).toHaveProperty('href', '/api/v3/statuses/1');
   })
   it('get', async () => {
-    const wp = new WP(body.work_package as IWPBody);
-    expect(wp.status.self).toEqual(body.work_package._links.status);
+    const wp = new WP(body.work_package as IWPBody)
+    expect(wp.status.self).toEqual(body.work_package._links.status)
   })
 })

@@ -10,19 +10,21 @@ export default class Abstract {
   static url = '/should_be_defined'
 
   body: IAbstractBody
+  private _links: { [key: string]: Abstract }
 
   constructor(init?: number | IEndpoint | IAbstractBody) {
     this.body = {
       _links: {},
-      _embedded:{},
+      _embedded: {},
     }
+    this._links = {}
     if (init) {
       if (typeof init === 'number') {
-        this.id = init;
+        this.id = init
       } else if (typeof init === 'object' && init.hasOwnProperty('href')) {
         this.self = init as IEndpoint;
       } else {
-        this.merge(init);
+        this.merge(init)
         if (this.id && !this.self) {
           this.id = this.id
         }
@@ -39,9 +41,9 @@ export default class Abstract {
 
   set id(id: number) {
     this.body.id = id;
-    this.body._links.self = {
-      href: this.constructor.url + '/' + id,
-    }
+    this.body._links.self= this.body._links.self || {href:undefined}
+    this.body._links.self.href = this.constructor.url + '/' + id
+    this.body._links.self.title = undefined
   }
 
   merge(source) {
