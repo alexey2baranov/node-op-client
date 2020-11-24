@@ -2,7 +2,11 @@ import {IEndpoint} from "./IEndpoint";
 import IAbstractBody from "./IAbstractBody";
 import set from "keypather/set";
 import get from "keypather/get";
+import IWPBody from "../WP/IWPBody";
 
+interface IPartialAbstractBody extends Partial< Omit<IWPBody, '_links'>>{
+  _links?: Partial<IAbstractBody['_links']>
+}
 
 export default class Abstract {
   ['constructor']: typeof Abstract
@@ -15,7 +19,7 @@ export default class Abstract {
    */
   _links: { [key: string]: Abstract }
 
-  constructor(init?: number | IEndpoint | Partial<IAbstractBody>) {
+  constructor(init?: number | IEndpoint | IPartialAbstractBody) {
     this.body = {
       id: undefined,
       _links: {

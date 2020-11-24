@@ -1,5 +1,6 @@
 import Abstract from "../../../src/entity/Abstract/Abstract";
 import body from "../../EntityManager/fotch.body";
+import {IPartialWPBody} from "../../../src/entity/WP/WP";
 
 describe('Abstract constructor', () => {
   it('empty', async () => {
@@ -33,7 +34,7 @@ describe('Abstract constructor', () => {
   })
   it('IEntity', async () => {
     const wpJson= body.work_package
-    const wp = new Abstract(wpJson);
+    const wp = new Abstract(wpJson as IPartialWPBody);
     expect(wp.body.id).toBe(wpJson.id);
     expect(wp.body._links.self).toEqual(wpJson._links.self)
   })

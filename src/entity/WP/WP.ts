@@ -11,6 +11,11 @@ import Field from "../decorators/Field";
 import {User} from "../../index";
 import Embedded from "../decorators/Embedded";
 
+
+export interface IPartialWPBody extends Partial< Omit<IWPBody, '_links'>>{
+  _links?: Partial<IWPBody['_links']>
+}
+
 /**
  * Work package
  */
@@ -19,7 +24,7 @@ export default class WP extends Abstract {
 
   static url = '/api/v3/work_packages'
 
-  constructor(init?: number | IEndpoint | Partial<IWPBody>) {
+  constructor(init?: number | IEndpoint | IPartialWPBody ) {
     super(init)
   }
 
@@ -93,7 +98,7 @@ export default class WP extends Abstract {
     return this.body._links.children.map(eachChildJson => new WP(eachChildJson))
   }
 
-  toString(){
+  toString() {
     return `${this.id} ${this.type.self.title}(${this.type.id}) ${this.self.title}`
   }
 }
