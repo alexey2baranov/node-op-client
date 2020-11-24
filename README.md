@@ -1,6 +1,6 @@
 #op-client
 
-Client library for OpenProject server. Works both on Node.js and browser. Tested with v10 and 11.
+Client library for OpenProject server. Works both in Node.js and browser. Tested with OpenProject v10 and v11.
 
 ## Installation
 ```bash
