@@ -72,9 +72,12 @@ export default class WP extends Abstract {
   @Link('author', User)
   author: User
 
+  @Link('parent', WP)
+  parent: WP
+
   body: IWPBody
 
-  get parent(): WP {
+  get ancestor(): WP {
     if (!this.body._links.ancestors) {
       return undefined
     }

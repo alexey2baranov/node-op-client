@@ -15,11 +15,11 @@ describe('opi lib WP parent', () => {
   it('empty', () => {
     body._links.ancestors=[]
     const wp= new WP(body)
-    expect(wp.parent).toBeNull()
+    expect(wp.ancestor).toBeNull()
   })
   it('exists', async () => {
     const wp= new WP(body)
-    expect(wp.parent).toBeInstanceOf(WP)
-    expect(wp.parent.id).toBe(470)
+    expect(wp.ancestor).toBeInstanceOf(WP)
+    expect(wp.ancestor.id).toBe(470)
   })
 })
