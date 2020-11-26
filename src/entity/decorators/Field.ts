@@ -5,7 +5,6 @@ import Duration from "../Abstract/Duration";
 
 export default function Field(name: string, type?: any) {
   return function (target: Abstract, propertyKey: string | symbol): void {
-    let value
     function getter() {
       if (this.body.hasOwnProperty(name)) {
         if (type === Date) {
